@@ -7,10 +7,6 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("authenticated user can access /dashboard", async ({ page }) => {
-  // wait 20 seconds
-  await page.waitForTimeout(20000);
-
-
   await clerk.signIn({
     page,
     signInParams: {
@@ -20,7 +16,7 @@ test("authenticated user can access /dashboard", async ({ page }) => {
     },
   });
 
-  await page.goto("/dashboard", {timeout: 30000});
+  await page.goto("/dashboard");
 
-  await expect(page.locator("h1")).toContainText("Welcome to Dashboard", {timeout: 30000});
+  await expect(page.locator("h1")).toContainText("Welcome to Dashboard");
 });
